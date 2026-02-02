@@ -1,6 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+</script>
 
 
-<template></template>
+<template>
 
-<style scoped></style>
+    <footer class="footer">
+        <p>&copy; 2024 Salsiquizz. Tous droits réservés.</p>
+    </footer>
+    
+</template>
+
+
+
+<style scoped>
+
+</style>
