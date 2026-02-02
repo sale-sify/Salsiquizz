@@ -2,19 +2,23 @@
 
 // Importations
     import { ref } from 'vue';
+    import { storeToRefs } from 'pinia';
     import { useRouter } from 'vue-router';
     import { useUserStore } from '@/stores/users';
-import { tokenToString } from 'typescript';
+    import { tokenToString } from 'typescript';
 
 
 // Initialisations
     const router = useRouter();
     const userStore = useUserStore();
+    const { isAuthenticated, name, email, loading, error } = storeToRefs(userStore)
+
+    async function handleLogin() {
+        await userStore.login('test@mail.co', 'password')
+    }
 
 
 // Variables pour les formulaires
-    const email = ref('');
-    const name = ref('');
     const password = ref('');
     const confirmPassword = ref('');
 
@@ -24,6 +28,9 @@ import { tokenToString } from 'typescript';
     function toggleForm() {
         isSignIn.value = !isSignIn.value;
     }
+
+
+
 
 
 
