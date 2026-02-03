@@ -39,7 +39,7 @@
 
 <template>
     
-    <section>
+    <section class="form-main-container">
 
         <button @click="toggleForm">{{ isSignIn ? 'Se connecter' : 'S\'inscrire' }}</button>
 
@@ -98,5 +98,9 @@
 
 
 <style scoped>
+
+    .form-main-container {
+        width: 40%;
+    }
     
 </style>

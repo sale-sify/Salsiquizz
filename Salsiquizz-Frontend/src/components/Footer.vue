@@ -15,4 +15,16 @@
 
 <style scoped>
 
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 7%;
+        background: grey;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 </style>

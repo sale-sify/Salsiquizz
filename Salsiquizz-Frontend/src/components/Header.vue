@@ -22,14 +22,41 @@
         <h1 class="header-title">Salsiquizz</h1>
 
         <nav v-if="user.isAuthenticated" class="header-nav">
-            <RouterLink to="/home">Acceuil</RouterLink>
-            <RouterLink to="/play">Jouer</RouterLink>
-            <RouterLink to="/scores">Scores</RouterLink>
-            <RouterLink to="/profile">Profil</RouterLink>
+            <RouterLink class="link-btn" to="/home">Acceuil</RouterLink>
+            <RouterLink class="link-btn" to="/play">Jouer</RouterLink>
+            <RouterLink class="link-btn" to="/scores">Scores</RouterLink>
+            <RouterLink class="link-btn" to="/profile">Profil</RouterLink>
         </nav>
         
     </header>
 
 </template>
 
-<style scoped></style>
+<style scoped>
+
+    .header {
+        margin: 0;
+        position: fixed;
+        top: 0%;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        background: rgb(102, 4, 4);
+        color: beige;
+    }
+
+    .header-nav {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .link-btn {
+        text-decoration: none;
+        color:beige
+    }
+
+
+</style>

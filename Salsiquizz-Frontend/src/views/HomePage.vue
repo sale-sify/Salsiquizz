@@ -2,6 +2,7 @@
 
     import Header from '@/components/Header.vue';
     import Footer from '@/components/Footer.vue';
+    import HomeHero from '@/components/HomeHero.vue';
     import { useRouter } from 'vue-router';
     import { RouterLink } from 'vue-router';
 
@@ -16,13 +17,10 @@
 
         <main class="main-container">
             <section class="home-hero">
-                <h1>Bienvenue sur Salsiquizz</h1>
-                <p>Testez vos connaissances avec nos quiz amusants et interactifs !</p>
+                <HomeHero/>
                 <RouterLink to="/play" class="btn-start-quiz">Jouer</RouterLink>
             </section>
         </main>
-
-
 
     <Footer />
 </template>

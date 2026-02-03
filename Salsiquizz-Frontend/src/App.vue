@@ -12,13 +12,18 @@
 
 
 <template>
-
-      <router-view></router-view>
-
+    <section>
+        <router-view></router-view>
+    </section>
 </template>
 
 
 
 <style scoped>
 
+
+    section {
+        margin: 0;
+        background: rgb(83, 83, 83);  
+    }
 </style>
