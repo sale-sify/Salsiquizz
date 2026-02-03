@@ -24,6 +24,6 @@
 
     section {
         margin: 0;
-        background: rgb(83, 83, 83);  
+        background: var(--bg-color-one);  
     }
 </style>

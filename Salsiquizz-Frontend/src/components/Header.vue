@@ -11,6 +11,7 @@
     const user = {
         isAuthenticated: route.name !== 'Auth' // Par exemple, l'utilisateur est authentifié si la route n'est pas 'Auth'
     };
+
 </script>
 
 
@@ -33,29 +34,75 @@
 </template>
 
 <style scoped>
-
+/* Header main container  */
     .header {
         margin: 0;
         position: fixed;
-        top: 0%;
+        top: 0;
         left: 0;
         width: 100%;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
-        background: rgb(102, 4, 4);
-        color: beige;
+        background: var(--bg-color-two);
+        color: var(--text-color-one);
+        border-bottom: 1px solid var(--border-color-primary) ;
+        box-shadow: 0 0 16px 1px var(--border-color-secondary); 
     }
 
+/* Header title  */
+    .header > h1 {
+        font-size: 2.4rem;  
+    }
+
+/* Header Navigation  */
     .header-nav {
         display: flex;
-        gap: 2rem;
+        gap: 3rem;
     }
 
+/* Header link button navigation  */
     .link-btn {
+        min-width: 50px;
+        text-align: center;
+        font-size: 1.1rem;
+        padding: 0.8rem;
         text-decoration: none;
-        color:beige
+        color:var(--text-color-one);
+        background: var(--bg-color-one);
+        border: 1px solid var(--border-color-primary);
+        border-radius: var(--border-radius);
+        box-shadow: 2px 2px 5px var(--border-color-secondary);
+        transition: all 0.2s ease-in-out;
+    }
+    .link-btn:hover {
+        background: var(--bg-color-three);
+        box-shadow: 2px 2px 5px 3px var(--border-color-secondary);
+    }
+
+
+
+
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+        }
+        .header > h1 {
+            font-size: 1.5rem;
+        }
+        .header-nav {
+            width: 100%;
+            gap: 1rem;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+        }
+        .link-btn {
+            padding: 0.4rem;
+            font-size: 0.7rem;
+        }   
     }
 
 
