@@ -8,4 +8,12 @@
     --border-color-primary: rgb(143, 143, 143);
     --border-color-secondary: rgb(114, 114, 114);
     --border-radius: 15px;
+
+    --box-shadow-primary: 0 0 16px 1px var(--border-color-secondary);
+    --box-shadow-secondary: 2px 2px 5px var(--border-color-secondary);
+    --box-shadow-hover: 2px 2px 5px 3px var(--border-color-secondary);
+
+    --font-title: "Josefin Sans", sans-serif;
+    --font-under-title: "Josefin Sans", sans-serif;
+    --font-text: "Josefin Sans", sans-serif; 
 }

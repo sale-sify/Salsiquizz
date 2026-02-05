@@ -9,17 +9,18 @@
 
 // Simulation d'un utilisateur authentifié (à remplacer par une vraie gestion d'authentification)
     const user = {
-        isAuthenticated: route.name !== 'Auth' // Par exemple, l'utilisateur est authentifié si la route n'est pas 'Auth'
+        isAuthenticated: route.name !== 'Auth'
     };
 
 </script>
+
 
 
 <template>
 
     <header class="header">
 
-        <img src="" alt="logo-salsiquizz" class="header-logo" />
+        <img src="../assets/images/cat.png" alt="logo-salsiquizz" class="header-logo" />
         <h1 class="header-title">Salsiquizz</h1>
 
         <nav v-if="user.isAuthenticated" class="header-nav">
@@ -33,7 +34,10 @@
 
 </template>
 
+
+
 <style scoped>
+
 /* Header main container  */
     .header {
         margin: 0;
@@ -41,6 +45,7 @@
         top: 0;
         left: 0;
         width: 100%;
+        height: 12vh;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -53,13 +58,22 @@
 
 /* Header title  */
     .header > h1 {
-        font-size: 2.4rem;  
+        font-size: 2.7rem; 
+        font-family: var(--font-text);
+        font-style: normal;
+    }
+
+/* Header logo  */
+    .header-logo {
+        width: 6rem;
+        
     }
 
 /* Header Navigation  */
     .header-nav {
         display: flex;
         gap: 3rem;
+        font-family: var(--font-text);
     }
 
 /* Header link button navigation  */
@@ -79,6 +93,7 @@
     .link-btn:hover {
         background: var(--bg-color-three);
         box-shadow: 2px 2px 5px 3px var(--border-color-secondary);
+        transform: scale(1.05);
     }
 
 
@@ -87,6 +102,7 @@
     @media (max-width: 768px) {
         .header {
             flex-direction: column;
+            height: auto;
         }
         .header > h1 {
             font-size: 1.5rem;
@@ -104,6 +120,5 @@
             font-size: 0.7rem;
         }   
     }
-
 
 </style>

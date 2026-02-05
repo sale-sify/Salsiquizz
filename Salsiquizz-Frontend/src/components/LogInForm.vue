@@ -100,7 +100,20 @@
 <style scoped>
 
     .form-main-container {
-        width: 40%;
+        width: 90%;
+        min-height: 60%;
+        margin: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        border: 1px solid var(--border-color-primary);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow-primary);
+        padding: 1rem;
     }
     
 </style>

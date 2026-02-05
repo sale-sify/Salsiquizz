@@ -17,12 +17,12 @@ const router = useRouter();
         <Header></Header>
 
             <div class="main-box-auth-page">
-                <div class="HomeHero-box">
+                
                     <HomeHero />
-                </div>
-                <div class="LoginForm-box">
+                
+                
                     <LogInForm />
-                </div>
+                
             </div>
 
         <Footer></Footer>
@@ -33,21 +33,21 @@ const router = useRouter();
 <style scoped>
 
     .main-container-auth-page{
-        width: 100%;
-        margin: 0;
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+        min-height: 100vh;
+        max-width: 100vw;
     }
 
     .main-box-auth-page {
         width: 100%;
-        height: 95vh;
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: space-around;
+        padding-top: 12vh;
+        padding-bottom: 5vh;
     }
+
     
     
 
