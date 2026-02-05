@@ -9,7 +9,7 @@
 
 // Simulation d'un utilisateur authentifié (à remplacer par une vraie gestion d'authentification)
     const user = {
-        isAuthenticated: route.name !== 'Auth'
+        isAuthenticated: route.name !== 'auth'
     };
 
 </script>

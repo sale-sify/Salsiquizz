@@ -29,7 +29,7 @@
     }
 
     .welcoming-box > img {
-        width: 70%;
+        width: 60%;
     }
 
     .welcoming-box > p {
