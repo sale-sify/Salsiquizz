@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import type { User, UserId } from '@/types/user'
 import { idText } from "typescript";
+import router from "@/router";
 
 
 interface UserState {
@@ -68,6 +69,30 @@ export const useUserStore = defineStore('user', {
             this.error = null
             this.loading = false
             localStorage.removeItem(STORAGE_KEY)
+            router.push('/')
+        },
+
+        async signIn(name: string, email: string, password:string) {
+            this.loading = true
+            this.error = null
+            try {
+                const res = await fetch('http://localhost:3000/auth/signin', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                })
+                if (!res.ok) throw new Error('Sign In Failed')
+
+                const data = (await res.json()) as { token: string; user: User }
+
+                this.token = data.token 
+                this.user = data.user
+                this.persist()
+            } catch(e) {
+                this.error = e instanceof Error ? e.message : 'Unknown error'
+            } finally {
+                this.loading = false
+            }
         },
 
         async login(email: string, password:string) {

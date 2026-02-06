@@ -13,8 +13,18 @@
     const userStore = useUserStore();
     const { isAuthenticated, name, email, loading, error } = storeToRefs(userStore)
 
+// Fonction de gestion de la connexion et de l'inscription
+    // Connexion
     async function handleLogin() {
-        await userStore.login('test@mail.co', 'password')
+        await userStore.login(email.value, password.value)
+    }
+    // inscription
+    async function handleSignIn() {
+        if (password.value !== confirmPassword.value) {
+            alert('Les mots de passe ne correspondent pas');
+            return;
+        }
+        await userStore.signIn(name.value, email.value, password.value)
     }
 
 
@@ -45,7 +55,7 @@
 
         <div class="signin-form-container" v-if="isSignIn">
             <h2>Inscription</h2>
-            <form class="signin-form">
+            <form class="signin-form" @submit.prevent="handleSignIn">
 
                 <div class="form-group">
                     <label for="email">Email :</label>
@@ -67,14 +77,14 @@
                     <input v-model="confirmPassword" type="password" id="confirm-password" name="confirm-password" required />
                 </div>
 
-                <button class="submit-btn" type="submit">S'inscrire</button>
+                <button class="submit-btn" type="submit" >S'inscrire</button>
 
             </form>
         </div>
 
         <div class="login-form-container" v-else>
             <h2>Connexion</h2>
-            <form class="login-form">
+            <form class="login-form" @submit.prevent="handleLogin">
 
                 <div class="form-group">
                     <label for="login-email">Email :</label>

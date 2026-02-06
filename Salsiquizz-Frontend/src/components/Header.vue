@@ -9,7 +9,7 @@
 
 // Simulation d'un utilisateur authentifié (à remplacer par une vraie gestion d'authentification)
     const user = {
-        isAuthenticated: route.name !== 'auth'
+        isAuthenticated: true
     };
 
 </script>
@@ -21,7 +21,7 @@
     <header class="header">
 
         <img src="../assets/images/cat.png" alt="logo-salsiquizz" class="header-logo" />
-        <h1 class="header-title">Salsiquizz</h1>
+        <h1 class="header-title">Salsiquizz.</h1>
 
         <nav v-if="user.isAuthenticated" class="header-nav">
             <RouterLink class="link-btn" to="/home">Acceuil</RouterLink>

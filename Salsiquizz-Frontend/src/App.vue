@@ -15,6 +15,7 @@
     <section>
         <router-view></router-view>
     </section>
+    
 </template>
 
 
@@ -26,4 +27,6 @@
         margin: 0;
         background: var(--bg-color-one);  
     }
+
+
 </style>
