@@ -26,6 +26,7 @@
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow-primary);
         padding: 1rem;
+        background: var(--bg-color-one);
     }
 
     .welcoming-box > img {

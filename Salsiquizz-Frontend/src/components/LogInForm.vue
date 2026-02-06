@@ -126,6 +126,7 @@
         border: 1px solid var(--border-color-primary);
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow-primary);
+        background: var(--bg-color-one);
         padding: 1rem;
         padding-top: 1.5rem;
         padding-bottom: 0;

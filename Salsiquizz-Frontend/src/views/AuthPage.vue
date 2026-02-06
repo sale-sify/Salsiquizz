@@ -36,6 +36,7 @@ const router = useRouter();
         display: flex;
         min-height: 100vh;
         max-width: 100vw;
+        z-index: 1;
     }
 
     .main-box-auth-page {

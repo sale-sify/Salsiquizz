@@ -2,6 +2,9 @@
 
 import { useUserStore } from '@/stores/users';
 import { storeToRefs } from 'pinia';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const userStore = useUserStore();
 const { isAuthenticated } = storeToRefs(userStore);
@@ -16,7 +19,7 @@ function logout() {
 
     <footer class="footer">
         <p>&copy; 2026 Salsiquizz. Tous droits réservés.</p>
-        <button class="btn-footer" @click="logout">Deconnexion</button>
+        <button v-if="route.name !== 'auth'" class="btn-footer" @click="logout">Deconnexion</button>
     </footer>
     
 </template>
