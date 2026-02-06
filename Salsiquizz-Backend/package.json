@@ -8,9 +8,13 @@
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^17.2.4",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "mongodb": "^7.1.0",
+    "mongoose": "^9.1.6",
+    "morgan": "~1.9.1",
+    "pg": "^8.18.0"
   }
 }
