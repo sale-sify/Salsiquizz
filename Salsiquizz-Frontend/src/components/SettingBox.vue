@@ -8,9 +8,14 @@
 
     const router = useRouter();
 
-    const categories: String[] = ref([]);
+    interface Category {
+        id: number;
+        name: string;
+    }
 
-    const selectedCategory = ref(null);
+    const categories = ref<Category[]>([]);
+
+    const selectedCategory = ref<Category | null>(null);
 
 
     async function fetchCategories() {
