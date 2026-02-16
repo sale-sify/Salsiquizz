@@ -1,9 +1,12 @@
+
+
+
+
 var express = require('express');
 var router = express.Router();
 
 const connectDB = require('../db');
 
-app.use(express.json());
 connectDB();
 
 app.listen(3000, () => {

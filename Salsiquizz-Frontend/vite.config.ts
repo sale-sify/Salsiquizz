@@ -10,6 +10,16 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
+  server: {
+    proxy: {
+      '/quizzapi': {
+        target: 'https://quizzapi.jomoreschi.fr',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/quizzapi/, ''),
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
