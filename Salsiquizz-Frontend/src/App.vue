@@ -25,6 +25,7 @@
 
     section {
         margin: 0;
+        inset: 0;
         background: var(--bg-color-one); 
         background-image: url("../src/assets/images/bg-props.png");
         background-color: rgba(150, 148, 125, 0.6);

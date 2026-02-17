@@ -1,22 +1,28 @@
 :root {
+    /* Background colors  */
     --bg-color-one: rgb(177, 175, 155);
     --bg-color-two: rgb(173, 171, 151);
     --bg-color-three: rgb(182, 177, 155);
     --bg-color-CTA: rgb(46, 45, 45);
     --bg-color-CTA-hover: rgb(66, 66, 66);
 
+    /* Text colors */
     --text-color-one: rgb(230, 225, 212);
 
+    /* Border colors */
     --border-color-primary: rgb(143, 143, 143);
     --border-color-secondary: rgb(114, 114, 114);
     --border-color-contrast: rgb(192, 192, 192);
+    --border-color-CTA: rgb(214, 214, 214);
     --border-radius: 15px;
 
+    /* box-shadows */
     --box-shadow-primary: 0 0 16px 1px var(--border-color-secondary);
     --box-shadow-secondary: 2px 2px 5px var(--border-color-secondary);
     --box-shadow-tertiary: 0px 2px 50px 3px var(--border-color-secondary);
     --box-shadow-hover: 2px 2px 5px 3px var(--border-color-secondary);
 
+    /* Fonts */
     --font-title: "Josefin Sans", sans-serif;
     --font-under-title: "Josefin Sans", sans-serif;
     --font-text: "Josefin Sans", sans-serif; 

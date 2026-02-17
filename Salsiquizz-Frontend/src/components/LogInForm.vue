@@ -249,6 +249,7 @@
         background: var(--bg-color-three);
         box-shadow: 2px 2px 5px 3px var(--border-color-secondary);
         transform: scale(1.05);
+        border: 2px solid var(--border-color-CTA);
     }
     
 

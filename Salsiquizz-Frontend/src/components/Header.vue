@@ -65,8 +65,7 @@
 
 /* Header logo  */
     .header-logo {
-        width: 6rem;
-        
+        width: 10rem;
     }
 
 /* Header Navigation  */
