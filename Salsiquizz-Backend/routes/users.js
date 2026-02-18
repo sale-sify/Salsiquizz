@@ -1,16 +1,25 @@
 
-
-
-
 var express = require('express');
 var router = express.Router();
+const app = express();
 
-const connectDB = require('../db');
 
-connectDB();
+// Connexion avec la base de donnees NeonDB - PostgreSQL
+const { Client } = require('pg');
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+const client = new Client({
+  connectionString: process.env.CONNECT_STRING_BDD,
+  ssl: {  rejectUnauthorized: false },
+});
+
+client.connect()
+  .then(() => console.log("✅ Connected to NeonDB"))
+  .catch((err) => console.error("❌ DB connection error:", err));
+
+
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
 
 /* GET users listing. */
