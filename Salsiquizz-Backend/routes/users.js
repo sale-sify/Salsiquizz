@@ -5,12 +5,18 @@ const db = require('../neondb');
 
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
-  try {
-    const result = await db.query("SELECT NOW() as now");
-    res.json({ ok: true, now: result.rows[0].now });
-  } catch (err) {
-    next(err);
-  }
+    try {
+        const result = await db.query("SELECT * FROM users");
+        res.json({ ok: true, users: result.rows });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ ok: false, error: err.message });
+    }
 });
+
+
+
+
+
 
 module.exports = router;

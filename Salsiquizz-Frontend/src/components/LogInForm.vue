@@ -5,32 +5,59 @@
     import { storeToRefs } from 'pinia';
     import { useRouter } from 'vue-router';
     import { useUserStore } from '@/stores/users';
-    import { tokenToString } from 'typescript';
 
 
 // Initialisations
     const router = useRouter();
     const userStore = useUserStore();
-    const { isAuthenticated, name, email, loading, error } = storeToRefs(userStore)
-
-// Fonction de gestion de la connexion et de l'inscription
-    // Connexion
-    async function handleLogin() {
-        await userStore.login(email.value, password.value)
-    }
-    // inscription
-    async function handleSignIn() {
-        if (password.value !== confirmPassword.value) {
-            alert('Les mots de passe ne correspondent pas');
-            return;
-        }
-        await userStore.signIn(name.value, email.value, password.value)
-    }
+    const { isAuthenticated, loading, error } = storeToRefs(userStore)
 
 
 // Variables pour les formulaires
     const password = ref('');
     const confirmPassword = ref('');
+    const email = ref('');
+    const name = ref('');
+
+
+
+// Fonction de gestion de la connexion et de l'inscription
+
+    // Connexion
+    async function handleLogin() {
+        await userStore.login(email.value, password.value)
+        if (isAuthenticated.value) {
+            router.push('/home');
+        }
+    }
+
+    // inscription
+    async function handleSignIn() {
+        // Confirmation du mot de passe
+        if (password.value !== confirmPassword.value) {
+            alert('Les mots de passe ne correspondent pas');
+            return;
+        }
+        // Verification longueur du mot de passe
+        if (password.value.length < 6) {
+            alert('Le mot de passe doit contenir au moins 6 caractères');
+            return;
+        }
+        // Verification de l'email
+        if (email.value.length < 5 || !email.value.includes('@')) {
+            alert('Veuillez entrer une adresse email valide');
+            return;
+        }
+        // Appel de la fonction d'inscription du store
+        await userStore.signIn(name.value, email.value, password.value)
+
+        isSignIn.value = false;
+    }
+
+
+
+
+
 
 
 // Gestion de l'affichage des formulaires
