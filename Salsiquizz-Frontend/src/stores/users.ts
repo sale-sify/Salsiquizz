@@ -81,39 +81,52 @@ export const useUserStore = defineStore('user', {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, email, password })
                 })
-                if (!res.ok) throw new Error('Sign In Failed')
 
-                const data = (await res.json()) as { token: string; user: User }
+                const data = (await res.json()) as { ok: boolean; error?:string } 
 
-                this.token = data.token 
-                this.user = data.user
-                this.persist()
+                if (!res.ok || !data.ok) throw new Error(data.error ?? 'Sign In Failed')
+
+                return true
             } catch(e) {
                 this.error = e instanceof Error ? e.message : 'Unknown error'
+                return false
             } finally {
                 this.loading = false
             }
         },
 
+
+
+
+
         async login(email: string, password:string) {
             this.loading = true
             this.error = null
             try {
-                const res = await fetch('http://localhost:3000/auth/login', {
+                const res = await fetch('http://localhost:3001/auth/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
                 })
 
-                if (!res.ok) throw new Error('Login Failed')
+                const data = (await res.json()) as { 
+                    ok: boolean; 
+                    token: string; 
+                    user: User; 
+                    error?: string 
+                }
 
-                const data = (await res.json()) as { token: string; user: User }
-
+                if (!res.ok || !data.ok || !data.token || !data.user) {
+                    throw new Error(data.error ?? 'Login Failed')
+                }
                 this.token = data.token 
                 this.user = data.user
                 this.persist()
+
+                return true
             } catch(e) {
                 this.error = e instanceof Error ? e.message : 'Unknown error'
+                return false
             } finally {
                 this.loading = false
             }

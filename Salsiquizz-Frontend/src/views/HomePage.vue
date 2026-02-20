@@ -4,15 +4,17 @@
     import Footer from '@/components/Footer.vue';
     import { useRouter } from 'vue-router';
     import { RouterLink } from 'vue-router';
+    import { useUserStore } from '@/stores/users';
 
 // Initialisations
     const router = useRouter();
+    const userStore = useUserStore();
 
-// fictive user data for demonstration purposes
-    const user = {
-        name: 'John Doe',
-        isAuthenticated: true,
-    }
+// Variables
+    const user = userStore.user
+    const isAuthenticated = userStore.isAuthenticated
+    const token = userStore.token
+    
 
 </script>
 
@@ -24,7 +26,7 @@
         <main class="main-container">
             <img src="../assets/images/surprised-cat.png" alt="slsiquizz surprised cat logo" class="home-cat-img">
             <section class="home-hero">
-                <h1>Bienvenue sur Salsiquizz. {{ user.name }} !</h1>
+                <h1>Bienvenue sur Salsiquizz. {{ user?.name }} !</h1>
                 <RouterLink to="/play" class="btn-start-quiz">Jouer</RouterLink>
             </section>
         </main>

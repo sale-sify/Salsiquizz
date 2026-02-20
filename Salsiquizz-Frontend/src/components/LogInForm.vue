@@ -10,7 +10,7 @@
 // Initialisations
     const router = useRouter();
     const userStore = useUserStore();
-    const { isAuthenticated, loading, error } = storeToRefs(userStore)
+    const { loading, error } = storeToRefs(userStore)
 
 
 // Variables pour les formulaires
@@ -25,10 +25,14 @@
 
     // Connexion
     async function handleLogin() {
-        await userStore.login(email.value, password.value)
-        if (isAuthenticated.value) {
-            router.push('/home');
+        const ok = await userStore.login(email.value, password.value)
+        if (!ok) {
+            alert('Erreur de connexion : ' + error.value);
+            return;
         }
+        router.push('/home');
+
+        
     }
 
     // inscription
@@ -49,9 +53,11 @@
             return;
         }
         // Appel de la fonction d'inscription du store
-        await userStore.signIn(name.value, email.value, password.value)
+        const ok = await userStore.signIn(name.value, email.value, password.value)
 
-        isSignIn.value = false;
+        if (ok) {
+            isSignIn.value = false;
+        }
     }
 
 
@@ -75,8 +81,15 @@
 
 
 <template>
+
+
+    <section class="loading-container" v-if="loading">
+        <p>Chargement...</p>
+        <div class="loader"></div>
+    </section>
     
-    <section class="form-main-container">
+    
+    <section v-if="!loading" class="form-main-container">
 
         <button id="toggle-form-btn" @click="toggleForm">{{ isSignIn ? 'Se connecter' : 'S\'inscrire' }}</button>
 
@@ -131,6 +144,7 @@
         <img id="sleeping-cat" src="../assets/images/sleeping-cat.png" alt="">
 
     </section>
+    
 
 </template>
 
@@ -138,9 +152,14 @@
 
 <style scoped>
 
+    
+
+
+
+/* ========================== MAIN CONTAINER ========================== */
     .form-main-container {
         width: 90%;
-        height: 60%;
+        height: 70%;
         min-height: 60%;
         margin: 3rem;
         display: flex;
@@ -161,35 +180,35 @@
     }
 
     
-
+/* Toggle form button to switch form signin to login */
     #toggle-form-btn {
         position: absolute;
         top: 1.5rem;
     }
 
+
+/* ========================== FORM CONTAINER ========================== */
     .login-form-container, .signin-form-container {
         width: 100%;
-        height: 85%;
+        height: 88%;
+        padding-bottom: 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-around; 
     }
-
+/* Title for form */
     h2 {
         min-width: 50%;
         font-family: var(--font-text);
         color: var(--text-color-one);
         font-size: 1.8rem;
-        margin-top: 1.5rem;
+        padding-top: 2rem;
         padding-bottom: 0.6rem;
         border-bottom: 1px solid var(--border-color-primary);
     }
 
-    .login-form-container  > h2 {
-        margin-top: 3rem;
-    }
-
+/* Sign in form conatainer */
     .signin-form {
         width: 100%;
         height: 100%;
@@ -200,6 +219,7 @@
         padding-bottom: 8%;
     }
 
+/* Login form container */
     .login-form {
         width: 100%;
         height: 100%;
@@ -210,6 +230,7 @@
         padding-bottom: 8%;
     }
 
+/* Group form representing label and input  */
     .form-group {
         width: 80%;
         display: flex;
@@ -221,7 +242,7 @@
         font-family: var(--font-text);
         color: var(--text-color-one);
         font-size: 1.1rem;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.4rem;
         margin-left: 0.5rem;
     }
     .form-group > input {
@@ -250,6 +271,8 @@
         border: 1px solid var(--border-color-secondary) !important;   
     }
 
+
+/* Submit / CTA button and hover animation */
     .submit-btn {
         position: absolute;
         bottom: 2rem;   
@@ -259,6 +282,8 @@
         background: var(--bg-color-CTA-hover);
     }
     
+
+/* button styling and hover animation */
     button {
         min-width: 300px;
         text-align: center;
@@ -279,7 +304,7 @@
         border: 2px solid var(--border-color-CTA);
     }
     
-
+/* Sleeping cat at the bottom with animation */
     #sleeping-cat {
         position: absolute;
         bottom: 0;
@@ -287,7 +312,6 @@
         transform: translateY(54%);
         animation: pulse 3s infinite;
     }
-
     @keyframes pulse {
         0% {
             transform: translateY(54%) scale(1);
@@ -297,6 +321,98 @@
         }
         100% {
             transform: translateY(54%) scale(1);
+        }
+    }
+
+
+/* ==================== LOADING CONTAINER ===================== */
+    .loading-container {
+        width: 90%;
+        height: 60%;
+        min-height: 60%;
+        margin: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        border: 1px solid var(--border-color-primary);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow-primary);
+        background: var(--bg-color-one);
+        padding: 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 0;
+        position: relative;
+    }
+
+/* Loading text */
+    .loading-container > p {
+        font-family: var(--font-text);
+        color: var(--text-color-one);
+        font-size: 2rem;
+    }
+
+/* Loader animation -> 3 vertical bars scaling up and down on different timing*/
+    .loader,
+    .loader:before,
+    .loader:after {
+        background: var(--text-color-one);
+        -webkit-animation: load1 1s infinite ease-in-out;
+        animation: load1 1s infinite ease-in-out;
+        width: 1em;
+        height: 4em;
+    }
+    .loader {
+        color: var(--text-color-one);
+        text-indent: -9999em;
+        margin: 88px auto;
+        position: relative;
+        font-size: 11px;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s;
+    }
+    .loader:before,
+    .loader:after {
+        position: absolute;
+        top: 0;
+        content: '';
+    }
+    .loader:before {
+        left: -1.5em;
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+    }
+    .loader:after {
+        left: 1.5em;
+    }
+    @-webkit-keyframes load1 {
+        0%,
+        80%,
+        100% {
+            box-shadow: 0 0;
+            height: 4em;
+        }
+        40% {
+            box-shadow: 0 -2em;
+            height: 5em;
+        }
+        }
+    @keyframes load1 {
+        0%,
+        80%,
+        100% {
+            box-shadow: 0 0;
+            height: 4em;
+        }
+        40% {
+            box-shadow: 0 -2em;
+            height: 5em;
         }
     }
     

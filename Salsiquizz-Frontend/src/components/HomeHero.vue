@@ -14,7 +14,7 @@
 
     .welcoming-box {
         width: 90%;
-        height: 60%;
+        height: 70%;
         margin: 3rem;
         display: flex;
         flex-direction: column;
@@ -36,8 +36,8 @@
     .welcoming-box > p {
         font-family: var(--font-text);
         color: var(--text-color-one);
-        font-size: 1.3rem;
-        line-height: 1.6rem;
+        font-size: 1.5rem;
+        line-height: 1.8rem;
         width: 80%;
     }
 
